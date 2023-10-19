@@ -28,8 +28,7 @@
     color: white;
     box-shadow: inset 0 0 0 0 #80808017;
     transition: ease-out 0.4s;
-    overflow: hidden;
-    height: 100%; }
+    overflow: hidden; }
     .dashboard .option--logo {
       font-size: 30px; }
     .dashboard .option--text {
