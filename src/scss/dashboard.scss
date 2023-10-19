@@ -112,11 +112,24 @@
     z-index: 1;
 
     &--img img {
-      width: 60px;
+      min-width: 60px;
+      max-width: 60px;
     }
-  
-    &__text p {
-      color: #ffda35;
+    
+    &__text {
+      text-overflow: ellipsis;
+      overflow: hidden;
+
+      h3, p {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      p {
+        color: #ffda35;
+      }
     }
 
     &::before {

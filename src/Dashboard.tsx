@@ -132,13 +132,13 @@ export default function Dashboard() {
         </div>
       </div>
 
-      <div className="account flex items-center border-2 border-solid border-white p-4">
+      <div className="account mt-6 flex items-center border-2 border-solid border-white p-4">
         <div className="account--img mr-4">
           <img className="border-2 border-solid border-white rounded-full" src="https://writestylesonline.com/wp-content/uploads/2018/11/Three-Statistics-That-Will-Make-You-Rethink-Your-Professional-Profile-Picture-1024x1024.jpg" alt="" />
         </div>
 
         <div className="account__text">
-          <h3 className='text-white text-base'>Rahul Singh Rawat</h3>
+          <h3 className='text-white text-base'>Rahul Singh Rawat Rahul Singh Rawat</h3>
           <p className='text-base font-medium'>Super Admin</p>
         </div>
       </div>

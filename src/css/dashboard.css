@@ -75,9 +75,18 @@
     position: relative;
     z-index: 1; }
     .dashboard .account--img img {
-      width: 60px; }
-    .dashboard .account__text p {
-      color: #ffda35; }
+      min-width: 60px;
+      max-width: 60px; }
+    .dashboard .account__text {
+      text-overflow: ellipsis;
+      overflow: hidden; }
+      .dashboard .account__text h3, .dashboard .account__text p {
+        width: 100%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+      .dashboard .account__text p {
+        color: #ffda35; }
     .dashboard .account::before {
       transition: 0.3s all ease-in-out;
       position: absolute;
