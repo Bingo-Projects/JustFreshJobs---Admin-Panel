@@ -1,5 +1,6 @@
 .dashboard {
-  min-width: 280px; }
+  min-width: 280px;
+  max-width: 320px; }
   .dashboard .main-frame {
     width: fit-content;
     margin: 1rem auto 2rem; }
@@ -48,22 +49,47 @@
       .dashboard .option--sub li.active {
         font-weight: bold;
         width: fit-content;
-        list-style: disc; }
+        list-style: disc;
+        text-decoration: underline; }
       .dashboard .option--sub.hide {
         display: none !important; }
     .dashboard .option:hover {
       box-shadow: inset 500px 0 0 0 #80808017; }
     .dashboard .option.active {
-      background-color: #306e76; }
+      background-color: #014a53; }
       .dashboard .option.active .option--sub {
         display: block; }
       .dashboard .option.active .text-container .dropdown {
         display: block; }
       .dashboard .option.active:hover {
-        box-shadow: inset 0 0 0 0 #306e76; }
+        box-shadow: inset 500px 0 0 0 #014a53; }
   .dashboard hr {
     margin-top: 1rem;
     height: 1.5px;
     width: 100%;
     border-radius: 10px;
     background-color: white; }
+  .dashboard .account {
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    position: relative;
+    z-index: 1; }
+    .dashboard .account--img img {
+      width: 60px; }
+    .dashboard .account__text p {
+      color: #ffda35; }
+    .dashboard .account::before {
+      transition: 0.3s all ease-in-out;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      opacity: 0;
+      content: "";
+      z-index: -1;
+      background-color: #353535; }
+    .dashboard .account:hover::before {
+      left: 0;
+      right: 0;
+      opacity: 1; }

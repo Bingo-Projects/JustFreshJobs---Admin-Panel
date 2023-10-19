@@ -29,7 +29,6 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
       highlighted?.classList.add("font-light");
     }
 
-
     // highlighting the option text if sub-option or dropdown is not clicked
     if (e.target.tagName !== "LI" && e.target.tagName !== "A" && e.target.tagName !== "path" && e.target.tagName !== "svg") {
       const activeList = option?.current?.querySelector("li.active") as HTMLDivElement;
@@ -38,6 +37,12 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
       }
       option.current.querySelector(".option--text")?.classList.remove("font-light");
       option.current.querySelector(".option--text")?.classList.add("font-medium");
+    }
+    else {
+      if (!option.current.querySelector(".option--sub li.active")) {
+        option.current.querySelector(".option--text")?.classList.remove("font-light");
+        option.current.querySelector(".option--text")?.classList.add("font-medium");
+      }
     }
 
     target.classList.add("active");
@@ -124,6 +129,17 @@ export default function Dashboard() {
         <div className='text-container flex items-center gap-3'>
           <InfoOutlinedIcon className='option--logo' />
           <span className="option--text">Help</span>
+        </div>
+      </div>
+
+      <div className="account flex items-center border-2 border-solid border-white p-4">
+        <div className="account--img mr-4">
+          <img className="border-2 border-solid border-white rounded-full" src="https://writestylesonline.com/wp-content/uploads/2018/11/Three-Statistics-That-Will-Make-You-Rethink-Your-Professional-Profile-Picture-1024x1024.jpg" alt="" />
+        </div>
+
+        <div className="account__text">
+          <h3 className='text-white text-base'>Rahul Singh Rawat</h3>
+          <p className='text-base font-medium'>Super Admin</p>
         </div>
       </div>
     </div>

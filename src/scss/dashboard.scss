@@ -1,5 +1,6 @@
 .dashboard {
   min-width: 280px;
+  max-width: 320px;
 
   .main-frame {
     width: fit-content;
@@ -68,6 +69,7 @@
         font-weight: bold;
         width: fit-content;
         list-style: disc;
+        text-decoration: underline;
       }
 
       &.hide {
@@ -80,7 +82,7 @@
     }
 
     &.active {
-      background-color: #306e76;
+      background-color: #014a53;
       .option--sub {
         display: block;
       }
@@ -90,7 +92,7 @@
       }
 
       &:hover {
-        box-shadow: inset 0 0 0 0 #306e76;
+        box-shadow: inset 500px 0 0 0 #014a53;
       }
     }
   }
@@ -102,4 +104,42 @@
     border-radius: 10px;
     background-color: white;
   }
+
+  .account {
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+    position: relative;
+    z-index: 1;
+
+    &--img img {
+      width: 60px;
+    }
+  
+    &__text p {
+      color: #ffda35;
+    }
+
+    &::before {
+      transition: 0.3s all ease-in-out;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      right: 50%;
+      bottom: 0;
+      opacity: 0;
+      content: "";
+      z-index: -1;
+      background-color: rgb(53, 53, 53);
+    }
+
+    &:hover {
+
+      &::before {
+        left: 0;
+        right: 0;
+        opacity: 1;
+      }
+    }
+  }
+
 }
