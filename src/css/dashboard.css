@@ -49,8 +49,7 @@
       .dashboard .option--sub li.active {
         font-weight: bold;
         width: fit-content;
-        list-style: disc;
-        text-decoration: underline; }
+        list-style: disc; }
       .dashboard .option--sub.hide {
         display: none !important; }
     .dashboard .option:hover {
