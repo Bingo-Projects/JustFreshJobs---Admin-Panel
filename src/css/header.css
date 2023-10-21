@@ -1,0 +1,57 @@
+header .hamburger {
+  margin-right: 2rem; }
+  header .hamburger svg {
+    font-size: 35px; }
+
+header .holder {
+  min-width: 0;
+  transition: min-width .5s linear; }
+  header .holder.input {
+    min-width: calc(100% - 140px); }
+    header .holder.input .search-div {
+      border-color: #014a53; }
+
+header .search-div {
+  border: 2px solid #bfbfbf;
+  padding: 6px 10px;
+  display: flex;
+  border-radius: 7px;
+  margin-right: 2rem;
+  width: 100%; }
+  header .search-div svg {
+    color: #7c7c7c;
+    margin-right: 10px; }
+  header .search-div input {
+    width: 100%;
+    outline: none; }
+    header .search-div input::placeholder {
+      color: #7c7c7c; }
+
+header .notification {
+  border: 2px solid #BFBFBF;
+  padding: 5px 8px;
+  border-radius: 7px;
+  position: relative;
+  transition: all .2s linear;
+  cursor: pointer; }
+  header .notification svg {
+    transition: all .2s linear;
+    color: #7c7c7c; }
+  header .notification .red {
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    height: 8px;
+    width: 8px;
+    border-radius: 40rem;
+    background-color: red; }
+  header .notification:hover {
+    background-color: #f1f1f1; }
+  header .notification.active {
+    border-color: #7c7c7c;
+    background-color: #7c7c7c; }
+    header .notification.active svg {
+      color: white; }
+    header .notification.active .red {
+      display: none; }
