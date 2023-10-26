@@ -61,7 +61,7 @@
       .dashboard .option.active .text-container .dropdown {
         display: block; }
       .dashboard .option.active:hover {
-        box-shadow: inset 500px 0 0 0 #014a53; }
+        box-shadow: none; }
   .dashboard hr {
     margin-top: 1rem;
     height: 1.5px;
@@ -79,7 +79,8 @@
     .dashboard .account__text {
       text-overflow: ellipsis;
       overflow: hidden; }
-      .dashboard .account__text h3, .dashboard .account__text p {
+      .dashboard .account__text h3,
+      .dashboard .account__text p {
         width: 100%;
         white-space: nowrap;
         overflow: hidden;

@@ -8,12 +8,19 @@ import InsertEmoticonOutlinedIcon from '@mui/icons-material/InsertEmoticonOutlin
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import ArrowDropDownOutlinedIcon from '@mui/icons-material/ArrowDropDownOutlined';
+import { useNavigate } from 'react-router-dom';
+import { optionIds } from "./index";
 
 
 type Lists = { name: string, link: string };
 
-function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: Lists[] }) {
+function Option(props: { 
+  Logo: typeof DataSaverOffIcon,
+  title: string, lists?: Lists[],
+  link: string, id: string, active?: boolean})
+{
   const option: any = useRef(null);
+  const navigate = useNavigate();
 
   const clickOption = (e: any): void => {
     const target = e?.currentTarget as HTMLDivElement;
@@ -37,6 +44,8 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
       }
       option.current.querySelector(".option--text")?.classList.remove("font-light");
       option.current.querySelector(".option--text")?.classList.add("font-medium");
+      navigate(props.link);
+
     }
     else {
       if (!option.current.querySelector(".option--sub li.active")) {
@@ -48,7 +57,7 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
     target.classList.add("active");
   }
 
-  const clickLink = (e: any): void => {
+  const clickLink = (e: any, link: string): void => {
     const target = e?.currentTarget as HTMLDivElement;
     const activeList = option?.current?.querySelector("li.active") as HTMLDivElement;
     if (activeList) {
@@ -57,6 +66,7 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
     target.classList.add("active");
     option.current.querySelector(".option--text")?.classList.remove("font-medium");
     option.current.querySelector(".option--text")?.classList.add("font-light");
+    navigate(link);
   }
 
   const toggleList = (e: any): void => {
@@ -73,16 +83,17 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
   }
 
   return (
-    <div ref={option} className="option rounded-lg mt-2 mb-2" onClick={clickOption}>
+    <div id={props.id} ref={option} onClick={clickOption} 
+    className={`option rounded-lg mt-2 mb-2 ${props.active?"active":""}`} >
       <div className='text-container flex items-center gap-3'>
         <props.Logo className='option--logo' />
-        <span className="option--text font-light">{props.title}</span>
+        <span className={`option--text ${props.active?"font-medium":"font-light"}`}>{props.title}</span>
         {props.lists && props.lists.length > 1 && <ArrowDropDownOutlinedIcon className='dropdown' onClick={toggleList} />}
       </div>
 
       {props.lists && <ul className="option--sub hide">
         {props.lists?.map((list: Lists, key: number) => (
-          <li onClick={clickLink} key={key}>{list.name}</li>
+          <li onClick={(e) => clickLink(e, list.link)} key={key}>{list.name}</li>
         ))}
       </ul>
       }
@@ -91,7 +102,7 @@ function Option(props: { Logo: typeof DataSaverOffIcon, title: string, lists?: L
 }
 
 
-export default function Dashboard() {
+export default function Dashboard(props: { option: string }) {
   return (
     <div className='dashboard bg-main-bg w-max p-3'>
       <div className="main-frame flex items-center gap-3">
@@ -100,27 +111,37 @@ export default function Dashboard() {
       </div>
 
       <div className='option-container'>
-        <Option Logo={DataSaverOffIcon} title="Analytics" />
+        <Option id={optionIds["analytics"]} active={props.option === optionIds["analytics"] ? true : false}
+        Logo={DataSaverOffIcon} title="Analytics" link="/" />
 
-        <Option Logo={AccountCircleRoundedIcon} title="Job Seekers" lists={
-          [{ name: "Option Number 1", link: "" }, { name: "Option Number 2", link: "" }, { name: "Option Number 3", link: "" }]
-        } />
+        <Option id={optionIds["seekers"]} active={props.option === optionIds["seekers"] ? true : false} Logo={AccountCircleRoundedIcon} title="Job Seekers" link="/job-seekers" />
 
-        <Option Logo={ApartmentIcon} title="Companies" lists={
-          [{ name: "Option Number 1", link: "" }, { name: "Option Number 2", link: "" }, { name: "Option Number 3", link: "" }]
-        } />
+        <Option id={optionIds["companies"]} active={props.option === optionIds["companies"] ? true : false}
+        Logo={ApartmentIcon} title="Companies" lists={
+          [{ name: "Option Number 1", link: "/" },
+          { name: "Option Number 2", link: "/two" },
+          { name: "Option Number 3", link: "/three" }]
+        } link="/companies" />
 
-        <Option Logo={MonetizationOnOutlinedIcon} title="Pricing Plans" lists={
-          [{ name: "Option Number 1", link: "" }, { name: "Option Number 2", link: "" }, { name: "Option Number 3", link: "" }]
-        } />
+        <Option id={optionIds["pricing"]} active={props.option === optionIds["pricing"] ? true : false}
+        Logo={MonetizationOnOutlinedIcon} title="Pricing Plans" lists={
+          [{ name: "Option Number 1", link: "/" },
+          { name: "Option Number 2", link: "/two" },
+          { name: "Option Number 3", link: "/three" }]
+        } link="/pricing" />
 
-        <Option Logo={InsertEmoticonOutlinedIcon} title="Staff" lists={
-          [{ name: "Option Number 1", link: "" }, { name: "Option Number 2", link: "" }, { name: "Option Number 3", link: "" }]
-        } />
+        <Option id={optionIds["staff"]} active={props.option === optionIds["staff"] ? true : false}  Logo={InsertEmoticonOutlinedIcon} title="Staff" lists={
+          [{ name: "Option Number 1", link: "/" },
+          { name: "Option Number 2", link: "/two" },
+          { name: "Option Number 3", link: "/three" }]
+        } link="/staff" />
 
-        <Option Logo={SettingsOutlinedIcon} title="Site Settings" lists={
-          [{ name: "Option Number 1", link: "" }, { name: "Option Number 2", link: "" }, { name: "Option Number 3", link: "" }]
-        } />
+        <Option id={optionIds["settings"]} active={props.option === optionIds["settings"] ? true : false}
+        Logo={SettingsOutlinedIcon} title="Site Settings" lists={
+          [{ name: "Option Number 1", link: "/" },
+          { name: "Option Number 2", link: "/two" },
+          { name: "Option Number 3", link: "/three" }]
+        } link="/settings" />
       </div>
 
       <hr />
