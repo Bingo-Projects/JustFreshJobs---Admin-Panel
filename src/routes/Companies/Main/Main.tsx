@@ -1,25 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
-import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
-import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import "../../css/JobSeekers/main.css";
+import "../../../css/JobSeekers/main.css";
 
 
 function TableItem(props: {
-  name: string, ip: string, email: string,
-  number: string, img: string, status: "active" | "suspend",
-  date: string, verified: { email: boolean, phone: boolean }
+  name: string, ip: string, campaigns: number,
+  hired: number, img: string, status: "active" | "suspend",
+  date: string, purchase: number
 }
 ) {
   return (
     <tr>
-      {/* <td className='text-left id'>#93489348jwjf934ad</td> */}
       <td className='p-4 name border-zinc-300'>
         <div className='flex items-center'>
           <img src="https://writestylesonline.com/wp-content/uploads/2018/11/Three-Statistics-That-Will-Make-You-Rethink-Your-Professional-Profile-Picture-1024x1024.jpg" alt="" className='w-10 h-10	rounded-full' />
@@ -30,8 +27,8 @@ function TableItem(props: {
         </div>
       </td>
       <td className='contact border-zinc-300'>
-        <h2 className='text-sm font-medium text-gray-900'>{props.email}</h2>
-        <p className='text-sm font-medium text-gray-400'>+91 {props.number}</p>
+        <h2 className='text-sm font-medium text-gray-900'>Hired: {props.hired.toLocaleString()}</h2>
+        <h2 className='text-sm font-medium text-gray-400'>Campaigns: {props.campaigns.toLocaleString()}</h2>
       </td>
       <td className='status border-zinc-300'>
         <div
@@ -39,14 +36,7 @@ function TableItem(props: {
           ${props.status === "active" ? "border-green-600 bg-green-200" : "border-yellow-600 bg-yellow-200"}`}>{props.status}</div>
       </td>
       <td className='text-base border-zinc-300 font-medium text-gray-800 date'>{props.date}</td>
-      <td className='verified border-zinc-300'>
-        <div className='text-sm font-medium text-gray-500 flex items-center'>
-          Email {props.verified.email ? <CheckCircleRoundedIcon className='text-green-600' /> : <CancelRoundedIcon className='text-red-600' />}
-        </div>
-        <div className='text-sm font-medium text-gray-500 flex items-center'>
-          Phone {props.verified.phone ? <CheckCircleRoundedIcon className='text-green-600' /> : <CancelRoundedIcon className='text-red-600' />}
-        </div>
-      </td>
+      <td className='text-base border-zinc-300 font-medium text-gray-800 date'>$ {props.purchase.toLocaleString()}</td>
       <td className='more border-zinc-300'>
         <MoreVertRoundedIcon />
       </td>
@@ -79,6 +69,7 @@ export default function Main() {
             input.value = "20"
             setTotalPages(TotalEntries / 20);
           }
+          else if (!parseInt(input.value)) return;
           setTotalPages(Math.ceil(TotalEntries / parseInt(input.value)));
           setStartingPage(1);
         }, 1500);
@@ -193,24 +184,21 @@ export default function Main() {
         <table className='w-full h-full'>
           <thead>
             <tr className='border-2 border-zinc-300'>
-              <th className='border-zinc-300'>Name</th>
-              <th className='border-zinc-300'>Contact</th>
+              <th className='border-zinc-300'>Company Name</th>
+              <th className='border-zinc-300'>Performance</th>
               <th className='border-zinc-300'>Status</th>
               <th className='border-zinc-300'>Date</th>
-              <th className='border-zinc-300'>Verified</th>
+              <th className='border-zinc-300'>Purchase</th>
             </tr>
           </thead>
 
           <tbody>
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
-            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" email="rahulsinghrawat9797@gmail.com" number="9384758495" img="" status="active" date="10/10/2005" verified={{ email: true, phone: false }} />
+            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" campaigns={50} hired={40} img="" status="active" date="10/10/2005" purchase={20000} />
+            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" campaigns={50} hired={40} img="" status="suspend" date="10/10/2005" purchase={20000} />
+            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" campaigns={50} hired={40} img="" status="active" date="10/10/2005" purchase={20000} />
+            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" campaigns={50} hired={40} img="" status="suspend" date="10/10/2005" purchase={20000} />
+            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" campaigns={50} hired={40} img="" status="active" date="10/10/2005" purchase={20000} />
+            <TableItem name="Rahul Singh Rawat" ip="192.168.1.2" campaigns={50} hired={40} img="" status="active" date="10/10/2005" purchase={20000} />
           </tbody>
         </table>
 
@@ -242,9 +230,7 @@ export default function Main() {
             </button>
           </div>
         </div>
-
       </div>
-
     </div>
   )
 }

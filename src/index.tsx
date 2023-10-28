@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import "./css/index.css";
@@ -8,6 +7,8 @@ export const optionIds = {
   "analytics": "analytics",
   "seekers": "seekers",
   "companies": "companies",
+  "companies_register": "companies_register",
+  "companies_campaign": "companies_campaign",
   "pricing": "pricing",
   "staff": "staff",
   "settings": "settings"
@@ -22,6 +23,8 @@ root.render(
       <Route path="/" element={<App option={optionIds["analytics"]} />}></Route>
       <Route path="/job-seekers" element={<App option={optionIds["seekers"]} />}></Route>
       <Route path="/companies" element={<App option={optionIds["companies"]} />}></Route>
+      <Route path="/companies/register-reqs" element={<App option={optionIds["companies_register"]} />}></Route>
+      <Route path="/companies/campaign-reqs" element={<App option={optionIds["companies_campaign"]} />}></Route>
       <Route path="/pricing" element={<App option={optionIds["pricing"]} />}></Route>
       <Route path="/staff" element={<App option={optionIds["staff"]} />}></Route>
       <Route path="/settings" element={<App option={optionIds["settings"]} />}></Route>

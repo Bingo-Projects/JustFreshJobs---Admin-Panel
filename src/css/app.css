@@ -70,17 +70,19 @@ input[type="number"] {
   .main-table td svg {
     margin-left: auto;
     font-size: 15px; }
-  .main-table td.contact {
+  .main-table td.contact, .main-table td.text {
     text-overflow: ellipsis;
+    text-wrap: nowrap;
     overflow: hidden;
     max-width: 200px; }
-    .main-table td.contact * {
+    .main-table td.contact *, .main-table td.text * {
       width: 100%;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis; }
   .main-table td.more {
     text-align: center;
+    min-width: 30px;
     max-width: 30px;
     transition: background-color 0.2s linear;
     cursor: pointer; }

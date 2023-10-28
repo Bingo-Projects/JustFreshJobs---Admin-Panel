@@ -5,6 +5,9 @@ import "./css/app.css";
 import { optionIds } from "./index";
 import Analytics from "./routes/Analytics/Main";
 import JobSeekers from "./routes/JobSeekers/Main";
+import Companies from "./routes/Companies/Main/Main";
+import CompaniesRegister from "./routes/Companies/Register/Register";
+import CompaniesCampaign from "./routes/Companies/Campaign/Campaign";
 
 function App(props: { option: string }) {
   return (
@@ -18,6 +21,9 @@ function App(props: { option: string }) {
         <div className='w-full h-full option-holder'>
           {props.option === "analytics" && <Analytics />}
           {props.option === "seekers" && <JobSeekers />}
+          {props.option === "companies" && <Companies />}
+          {props.option === "companies_register" && <CompaniesRegister />}
+          {props.option === "companies_campaign" && <CompaniesCampaign />}
         </div>
       </div>
 

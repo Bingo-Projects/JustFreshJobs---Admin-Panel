@@ -102,8 +102,9 @@ input[type="number"] {
       font-size: 15px;
     }
 
-    &.contact {
+    &.contact, &.text {
       text-overflow: ellipsis;
+      text-wrap: nowrap;
       overflow: hidden;
       max-width: 200px;
 
@@ -117,6 +118,7 @@ input[type="number"] {
 
     &.more {
       text-align: center;
+      min-width: 30px;
       max-width: 30px;
       transition: background-color 0.2s linear;
       cursor: pointer;

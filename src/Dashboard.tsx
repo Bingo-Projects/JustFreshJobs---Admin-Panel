@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import "./css/dashboard.css"
 import DataSaverOffIcon from '@mui/icons-material/DataSaverOff';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
@@ -12,15 +12,30 @@ import { useNavigate } from 'react-router-dom';
 import { optionIds } from "./index";
 
 
-type Lists = { name: string, link: string };
+type Lists = { name: string, link: string, active?: boolean };
 
 function Option(props: { 
   Logo: typeof DataSaverOffIcon,
   title: string, lists?: Lists[],
   link: string, id: string, active?: boolean})
 {
+  console.log(props.active);
+  
   const option: any = useRef(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    props.lists?.map(list => {
+      if (list.active) {
+        const dropdown = option.current.querySelector(".option--text");
+        dropdown?.classList.remove("font-medium");
+        dropdown?.classList.add("font-light");
+        toggleList();
+      }
+      return "";
+    })
+  }, []
+  );
 
   const clickOption = (e: any): void => {
     const target = e?.currentTarget as HTMLDivElement;
@@ -58,27 +73,27 @@ function Option(props: {
   }
 
   const clickLink = (e: any, link: string): void => {
-    const target = e?.currentTarget as HTMLDivElement;
     const activeList = option?.current?.querySelector("li.active") as HTMLDivElement;
     if (activeList) {
       activeList.classList.remove("active");
     }
-    target.classList.add("active");
-    option.current.querySelector(".option--text")?.classList.remove("font-medium");
-    option.current.querySelector(".option--text")?.classList.add("font-light");
+    e.currentTarget.classList.add("active");
+    option.current.querySelector(".option--text").classList.remove("font-medium");
+    option.current.querySelector(".option--text").classList.add("font-light");
+
     navigate(link);
   }
 
-  const toggleList = (e: any): void => {
-    const parent = e.currentTarget.parentElement.parentElement as HTMLDivElement;
-    const elementList = parent.querySelector(".option--sub");
-    if (e.currentTarget.classList.contains("active")) {
-      elementList?.classList?.add("hide");
-      e.currentTarget.classList.remove("active");
+  const toggleList = (): void => {
+    const elementList = option.current.querySelector(".option--sub");
+    const dropdown = option.current.querySelector(".dropdown");
+    if (dropdown.classList.contains("active")) {
+      elementList.classList?.add("hide");
+      dropdown.classList.remove("active");
     }
     else {
-      elementList?.classList?.remove("hide");
-      e.currentTarget.classList.add("active");
+      elementList.classList.remove("hide");
+      dropdown.classList.add("active");
     }
   }
 
@@ -93,7 +108,9 @@ function Option(props: {
 
       {props.lists && <ul className="option--sub hide">
         {props.lists?.map((list: Lists, key: number) => (
-          <li onClick={(e) => clickLink(e, list.link)} key={key}>{list.name}</li>
+          <>
+            <li onClick={(e) => clickLink(e, list.link)} className={`${list.active?"active":""}`} key={key}>{list.name}</li>
+          </>
         ))}
       </ul>
       }
@@ -103,6 +120,7 @@ function Option(props: {
 
 
 export default function Dashboard(props: { option: string }) {
+
   return (
     <div className='dashboard bg-main-bg w-max p-3'>
       <div className="main-frame flex items-center gap-3">
@@ -116,32 +134,24 @@ export default function Dashboard(props: { option: string }) {
 
         <Option id={optionIds["seekers"]} active={props.option === optionIds["seekers"] ? true : false} Logo={AccountCircleRoundedIcon} title="Job Seekers" link="/job-seekers" />
 
-        <Option id={optionIds["companies"]} active={props.option === optionIds["companies"] ? true : false}
+        <Option id={optionIds["companies"]} active={
+          props.option === optionIds["companies"] ||
+          props.option === optionIds["companies_register"] ||
+          props.option === optionIds["companies_campaign"] ? true : false}
         Logo={ApartmentIcon} title="Companies" lists={
-          [{ name: "Option Number 1", link: "/" },
-          { name: "Option Number 2", link: "/two" },
-          { name: "Option Number 3", link: "/three" }]
+          [ 
+            { name: "Register Requests", link: "/companies/register-reqs", active: props.option === optionIds["companies_register"] },
+            { name: "Campaign Requests", link: "/companies/campaign-reqs", active: props.option === optionIds["companies_campaign"] }
+          ]
         } link="/companies" />
 
         <Option id={optionIds["pricing"]} active={props.option === optionIds["pricing"] ? true : false}
-        Logo={MonetizationOnOutlinedIcon} title="Pricing Plans" lists={
-          [{ name: "Option Number 1", link: "/" },
-          { name: "Option Number 2", link: "/two" },
-          { name: "Option Number 3", link: "/three" }]
-        } link="/pricing" />
+        Logo={MonetizationOnOutlinedIcon} title="Pricing Plans" link="/pricing" />
 
-        <Option id={optionIds["staff"]} active={props.option === optionIds["staff"] ? true : false}  Logo={InsertEmoticonOutlinedIcon} title="Staff" lists={
-          [{ name: "Option Number 1", link: "/" },
-          { name: "Option Number 2", link: "/two" },
-          { name: "Option Number 3", link: "/three" }]
-        } link="/staff" />
+        <Option id={optionIds["staff"]} active={props.option === optionIds["staff"] ? true : false}  Logo={InsertEmoticonOutlinedIcon} title="Staff" link="/staff" />
 
         <Option id={optionIds["settings"]} active={props.option === optionIds["settings"] ? true : false}
-        Logo={SettingsOutlinedIcon} title="Site Settings" lists={
-          [{ name: "Option Number 1", link: "/" },
-          { name: "Option Number 2", link: "/two" },
-          { name: "Option Number 3", link: "/three" }]
-        } link="/settings" />
+        Logo={SettingsOutlinedIcon} title="Site Settings" link="/settings" />
       </div>
 
       <hr />
