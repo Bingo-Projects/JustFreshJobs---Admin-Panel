@@ -9,6 +9,7 @@ export const optionIds = {
   "companies": "companies",
   "companies_register": "companies_register",
   "companies_campaign": "companies_campaign",
+  "companies_promotion": "companies_promotion",
   "pricing": "pricing",
   "staff": "staff",
   "settings": "settings"
@@ -25,6 +26,7 @@ root.render(
       <Route path="/companies" element={<App option={optionIds["companies"]} />}></Route>
       <Route path="/companies/register-reqs" element={<App option={optionIds["companies_register"]} />}></Route>
       <Route path="/companies/campaign-reqs" element={<App option={optionIds["companies_campaign"]} />}></Route>
+      <Route path="/companies/promotion-reqs" element={<App option={optionIds["companies_promotion"]} />}></Route>
       <Route path="/pricing" element={<App option={optionIds["pricing"]} />}></Route>
       <Route path="/staff" element={<App option={optionIds["staff"]} />}></Route>
       <Route path="/settings" element={<App option={optionIds["settings"]} />}></Route>

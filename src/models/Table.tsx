@@ -32,13 +32,14 @@ function MainSubText(props: { main: string; sub: string }) {
   );
 }
 
-function Status(props: { status: "active" | "suspend" }) {
+function Status(props: { status: string, color: "green" | "yellow" }) {
+  console.log(props)
   return (
     <td className="status border-zinc-300">
       <div
         className={` border-2 text-center text-sm p-1 font-medium rounded capitalize
     ${
-      props.status === "active"
+      props.color === "green"
         ? "border-green-600 bg-green-200"
         : "border-yellow-600 bg-yellow-200"
     }`}
@@ -74,26 +75,35 @@ function CheckMarks(props: { objects: { name: string; check: boolean }[] }) {
   );
 }
 
-function Approve(props: { cancle_func: any; approve_func: any }) {
+function Approve(props: { cancel_func: any; approve_func: any, cancel_text: string, approve_text: string }) {
   return (
     <td className="status border-zinc-300">
       <div
         className={` border-2 text-center mb-2 text-sm p-1 font-medium rounded capitalize cursor-pointer border-green-600 bg-green-200`}
         onClick={props.approve_func}
       >
-        Approve
+        {props.approve_text}
       </div>
       <div
         className={` border-2 border-red-600 bg-red-200 text-center text-sm p-1 font-medium cursor-pointer rounded capitalize`}
-        onClick={props.cancle_func}
+        onClick={props.cancel_func}
       >
-        Reject
+        {props.cancel_text}
       </div>
     </td>
   );
 }
 
-export default function Table(props: { titles: String[]; items: any[] }) {
+function CheckBox(props: { eventFunc: any }) {
+  return (
+    <td className="text-base w-full text-center border-zinc-300 font-medium text-gray-800 date">
+      <input type="checkbox" className="w-5	h-5 cursor-pointer	" onChange={props.eventFunc} />
+    </td>
+  )
+}
+
+
+export default function Table(props: { titles: String[]; items: any[], className?: string, more?: boolean }) {
   const MAX_PAGE_GROUPS = 4;
   const VISIBLE_ENTRIES = 10;
   const entries = useRef(null);
@@ -224,11 +234,10 @@ export default function Table(props: { titles: String[]; items: any[] }) {
     forwardBtn.classList.remove("disable");
   };
 
-  console.log(props.items);
 
   return (
-    <div id="table" className="main-table bg-white w-full h-full mt-6">
-      <table className="w-full h-full">
+    <div id="table" className={`main-table mt-6 max-h-max ${props.className || ""}`}>
+      <table className="w-full bg-white h-full">
         <thead>
           <tr className="border-2 border-zinc-300">
             {props.titles?.map((title) => (
@@ -249,7 +258,7 @@ export default function Table(props: { titles: String[]; items: any[] }) {
                     <MainSubText main={data.main} sub={data.sub} />
                   )}
                   {data.type === "status" && (
-                    <Status status={data.active ? "active" : "suspend"} />
+                    <Status color={ data.active?"green":"yellow" } status={data.active ? (data.active_text || "active") : (data.secondary_text || "suspend")} />
                   )}
                   {data.type === "normal_text" && (
                     <NormalText text={data.text} />
@@ -258,20 +267,31 @@ export default function Table(props: { titles: String[]; items: any[] }) {
                     <CheckMarks objects={data.objects} />
                   )}
                   {data.type === "approve" && (
-                    <Approve approve_func={data.approve_func} cancle_func={data.cancel_func} />
+                    <Approve
+                      approve_func={data.approve_func}
+                      approve_text={data.approve_text || "Approve"}
+                      cancel_text={data.cancle_text || "Reject"}
+                      cancel_func={data.cancel_func}
+                    />
+                  )}
+                  {data.type === "check_box" && (
+                    <CheckBox eventFunc={data.event_func} />
                   )}
                 </>
               ))}
-              <td className="more border-zinc-300">
-                <MoreVertRoundedIcon />
-              </td>
+
+              { props.more !== false &&
+                <td className="more border-zinc-300">
+                  <MoreVertRoundedIcon />
+                </td>
+              }
             </tr>
           ))}
         </tbody>
       </table>
 
       <div
-        className="border-2 border-zinc-300 border-t-0 flex w-full justify-between p-2 py-2.5"
+        className="border-2 border-zinc-300 border-t-0 flex w-full justify-between p-2 py-2.5 bg-white"
         ref={entries}
       >
         <div className="flex items-center">
@@ -289,7 +309,7 @@ export default function Table(props: { titles: String[]; items: any[] }) {
           </div>
         </div>
 
-        <div className="flex gap-4">
+        <div className="flex gap-4 ">
           <button className="back disable" onClick={changePageBackward}>
             <KeyboardArrowLeftIcon className="arrow-left" />
           </button>

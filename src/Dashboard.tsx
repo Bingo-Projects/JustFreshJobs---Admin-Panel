@@ -119,10 +119,10 @@ function Option(props: {
 }
 
 
-export default function Dashboard(props: { option: string }) {
+export default function Dashboard(props: { option: string, dashHide: boolean }) {
 
   return (
-    <div className='dashboard bg-main-bg w-max p-3'>
+    <div className={'dashboard bg-main-bg w-max p-3' + (props.dashHide?" hide":"")}>
       <div className="main-frame flex items-center gap-3">
         <h1 className='jf-main text-5xl font-sans'>JF</h1>
         <p className='jf-sub-text text-xl'>Admin</p>
@@ -137,11 +137,13 @@ export default function Dashboard(props: { option: string }) {
         <Option id={optionIds["companies"]} active={
           props.option === optionIds["companies"] ||
           props.option === optionIds["companies_register"] ||
+          props.option === optionIds["companies_promotion"] ||
           props.option === optionIds["companies_campaign"] ? true : false}
         Logo={ApartmentIcon} title="Companies" lists={
           [ 
             { name: "Register Requests", link: "/companies/register-reqs", active: props.option === optionIds["companies_register"] },
-            { name: "Campaign Requests", link: "/companies/campaign-reqs", active: props.option === optionIds["companies_campaign"] }
+            { name: "Campaign Requests", link: "/companies/campaign-reqs", active: props.option === optionIds["companies_campaign"] },
+            { name: "Promotion Requests ", link: "/companies/promotion-reqs", active: props.option === optionIds["companies_promotion"] }
           ]
         } link="/companies" />
 

@@ -1,6 +1,7 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
-import Table from '../../../models/Table';
+import Table from '../../models/Table';
+
 
 const items =[
   [
@@ -54,10 +55,11 @@ const items =[
 ]
 
 export default function Main() {
+
   return (
     <div className='p-5'>
-      <div className="flex items-center justify-between">
-        <div className="search-input flex items-center bg-white border-2 border-zinc-300">
+      <div className="flex items-center">
+        <div className="search-input flex mr-2 items-center bg-white border-2 border-zinc-300">
           <SearchOutlinedIcon className='text-zinc-500' />
           <input
             type="text"
@@ -66,7 +68,7 @@ export default function Main() {
           />
         </div>
 
-        <div className="button-input flex items-center bg-white border-2 border-zinc-300" onClick={
+        <div className="button-input ml-auto mr-8 flex items-center bg-white border-2 border-zinc-300" onClick={
           (e) => e.currentTarget.classList.toggle("active")
         }>
           <FilterAltRoundedIcon className='text-zinc-500' />

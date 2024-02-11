@@ -1,6 +1,12 @@
 .dashboard {
   min-width: 280px;
-  max-width: 320px; }
+  max-width: 320px;
+  transition: all .2s linear; }
+  .dashboard.hide {
+    overflow: hidden;
+    min-width: 0;
+    max-width: 0;
+    padding: 0; }
   .dashboard .main-frame {
     width: fit-content;
     margin: 1rem auto 2rem; }

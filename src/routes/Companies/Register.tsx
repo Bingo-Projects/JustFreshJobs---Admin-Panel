@@ -1,6 +1,6 @@
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import FilterAltRoundedIcon from '@mui/icons-material/FilterAltRounded';
-import Table from '../../../models/Table';
+import Table from '../../models/Table';
 import TableRowsIcon from '@mui/icons-material/TableRows';
 import TableViewIcon from '@mui/icons-material/TableView';
 
@@ -12,7 +12,7 @@ const items =[
     {type: "main_sub", main: "admin@gmail.com", sub: "+91 8574589658"},
     {type: "check_marks", objects: [{ name: "Email", check: true }, { name: "Phone", check: false}]},
     {type: "normal_text", text: "10/10/2002"},
-    {type: "approve", approve_func: () => {}, cancel_func: () => {}}
+    {type: "approve", approve_func: () => {}, cancle_func: () => {}}
   ],
   [
     {type: "image_item", name: "JustFreshJob (JFJ)", ip: "192.168.1.1", logo: "https://thelogocompany.net/wp-content/uploads/2023/05/tlc-icon.jpg"},
@@ -20,7 +20,7 @@ const items =[
     {type: "main_sub", main: "admin@gmail.com", sub: "+91 8574589658"},
     {type: "check_marks", objects: [{ name: "Email", check: true }, { name: "Phone", check: false}]},
     {type: "normal_text", text: "10/10/2002"},
-    {type: "approve", approve_func: () => {}, cancel_func: () => {}}
+    {type: "approve", approve_func: () => {}, cancle_func: () => {}}
   ],
   [
     {type: "image_item", name: "JustFreshJob (JFJ)", ip: "192.168.1.1", logo: "https://thelogocompany.net/wp-content/uploads/2023/05/tlc-icon.jpg"},
@@ -28,7 +28,7 @@ const items =[
     {type: "main_sub", main: "admin@gmail.com", sub: "+91 8574589658"},
     {type: "check_marks", objects: [{ name: "Email", check: true }, { name: "Phone", check: false}]},
     {type: "normal_text", text: "10/10/2002"},
-    {type: "approve", approve_func: () => {}, cancel_func: () => {}}
+    {type: "approve", approve_func: () => {}, cancle_func: () => {}}
   ],
   [
     {type: "image_item", name: "JustFreshJob (JFJ)", ip: "192.168.1.1", logo: "https://thelogocompany.net/wp-content/uploads/2023/05/tlc-icon.jpg"},
@@ -36,7 +36,7 @@ const items =[
     {type: "main_sub", main: "admin@gmail.com", sub: "+91 8574589658"},
     {type: "check_marks", objects: [{ name: "Email", check: true }, { name: "Phone", check: false}]},
     {type: "normal_text", text: "10/10/2002"},
-    {type: "approve", approve_func: () => {}, cancel_func: () => {}}
+    {type: "approve", approve_func: () => {}, cancle_func: () => {}}
   ],
   [
     {type: "image_item", name: "JustFreshJob (JFJ)", ip: "192.168.1.1", logo: "https://thelogocompany.net/wp-content/uploads/2023/05/tlc-icon.jpg"},
@@ -44,7 +44,7 @@ const items =[
     {type: "main_sub", main: "admin@gmail.com", sub: "+91 8574589658"},
     {type: "check_marks", objects: [{ name: "Email", check: true }, { name: "Phone", check: false}]},
     {type: "normal_text", text: "10/10/2002"},
-    {type: "approve", approve_func: () => {}, cancel_func: () => {}}
+    {type: "approve", approve_func: () => {}, cancle_func: () => {}}
   ],
   [
     {type: "image_item", name: "JustFreshJob (JFJ)", ip: "192.168.1.1", logo: "https://thelogocompany.net/wp-content/uploads/2023/05/tlc-icon.jpg"},
@@ -52,7 +52,7 @@ const items =[
     {type: "main_sub", main: "admin@gmail.com", sub: "+91 8574589658"},
     {type: "check_marks", objects: [{ name: "Email", check: true }, { name: "Phone", check: false}]},
     {type: "normal_text", text: "10/10/2002"},
-    {type: "approve", approve_func: () => {}, cancel_func: () => {}}
+    {type: "approve", approve_func: () => {}, cancle_func: () => {}}
   ],
 ]
 
@@ -79,11 +79,6 @@ export default function Main() {
         }>
           <FilterAltRoundedIcon className='text-zinc-500' />
           <h2 className='text-zinc-500 ml-1'>Filters</h2>
-        </div>
-
-        <div className="toggle-btn flex">
-          <TableRowsIcon className="active" onClick={activeToggle} />
-          <TableViewIcon onClick={activeToggle} />
         </div>
       </div>
 

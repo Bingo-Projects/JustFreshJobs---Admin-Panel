@@ -4,7 +4,7 @@ import NotificationsNoneOutlinedIcon from '@mui/icons-material/NotificationsNone
 import "./css/header.css";
 import { useRef } from 'react';
 
-export default function Header() {
+export default function Header(props: { dashToggle: any }) {
   const holder: any = useRef(null);
 
   const activateInput = () => {
@@ -24,10 +24,11 @@ export default function Header() {
 
     document.body.addEventListener("click", revertInput);
   }
+
   return (
-    <header className='flex w-full items-center p-4'>
+    <header className='flex w-full items-center p-4 bg-white'>
       <div className="flex items-center w-fit">
-        <button className="hamburger">
+        <button className="hamburger" onClick={props.dashToggle}>
           <MenuOutlinedIcon />
         </button>
       </div>
